@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thực đơn Ô Cà Phê Cũ - quán cà phê rang xay thủ công, không gian ấm cúng.">
+  <title>TJUN | Thực đơn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,700;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+/* ============================================================
+   TJUN - style.css
+   Bảng màu: nền giấy #EFE6D8, nâu cà phê đậm #2B1B12,
+             chữ #3B2A20, điểm nhấn vàng đồng #B98543
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Work Sans", Arial, sans-serif;
+  background-color: #EFE6D8;
+  color: #3B2A20;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: "Fraunces", Georgia, serif;
+  color: #2B1B12;
+}
+
+/* ===================== HEADER ===================== */
+
+.site-header {
+  width: 100%;
+  height: 450px; /* Bạn có thể thay đổi số này (VD: 350px, 400px, 500px) để khung nền cao hơn hoặc thấp đi */
+
+  background-color: #2B1B12;
+  
+  /* Lấy đúng đường dẫn ảnh trên máy của bạn làm hình nền, có thêm lớp phủ mờ để chữ nổi bật */
+  background-image: 
+    linear-gradient(
+      180deg,
+      rgba(20, 12, 8, 0.2),
+      rgba(20, 12, 8, 0.6)
+    ),
+    url("file:///C:/Users/Thai/Downloads/TJUN.png");
+
+  /* Ép ảnh phóng to tràn kín toàn bộ khung nâu */
+  background-size: cover; 
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  color: #F3E9DC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.site-header h1 {
+  font-size: 3.5rem; /* Phóng to chữ TJUN */
+  color: #F3E9DC;
+  margin-bottom: 5px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Đổ bóng chữ cho dễ đọc trên nền ảnh */
+}
+
+.site-header .slogan {
+  font-size: 1.2rem;
+  color: #EFE6D8;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* ===================== NAVIGATION ===================== */
+
+.main-nav {
+  background-color: #3B2A20;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.main-nav > ul > li {
+  margin: 0 4px;
+}
+
+.main-nav a {
+  display: block;
+  padding: 14px 20px;
+  color: #EFE6D8;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.main-nav a:hover {
+  background-color: #B98543;
+  color: #2B1B12;
+}
+
+/* ===================== LAYOUT CHÍNH ===================== */
+
+.page-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  max-width: 1180px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+
+main {
+  flex: 3;
+}
+
+/* ===================== MENU SECTION ===================== */
+
+.menu-section {
+  margin-bottom: 48px;
+}
+
+.menu-section h2::before {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 3px;
+  background-color: #B98543;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.menu-section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  padding: 6px 10px;
+  background-origin: content-box;
+  background-clip: content-box;
+  background-image: linear-gradient(90deg, rgba(185,133,67,0.12), transparent);
+}
+
+.dish-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.dish-card {
+  background-color: #FBF7F0;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(43, 27, 18, 0.12);
+  overflow: hidden;
+  padding-bottom: 16px;
+  transition: transform 0.2s ease;
+}
+
+.dish-card:hover {
+  transform: translateY(-4px);
+}
+
+.dish-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 14px 14px 0 0;
+}
+
+.dish-card h3 {
+  font-size: 1.1rem;
+  margin: 12px 16px 6px;
+}
+
+.dish-card p {
+  font-size: 0.9rem;
+  color: #6B5B4E;
+  margin: 0 16px 10px;
+}
+
+.price {
+  display: inline-block;
+  margin: 0 16px;
+  font-weight: 600;
+  color: #2B1B12;
+}
+
+.price + .btn-order {
+  margin-left: 8px;
+}
+
+.btn-order {
+  display: inline-block;
+  background-color: #B98543;
+  color: #FBF7F0;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.btn-order:hover {
+  background-color: #97682F;
+}
+
+/* ===================== ASIDE ===================== */
+
+.sidebar {
+  flex: 1;
+  min-width: 240px;
+}
+
+.favorite-box,
+.promo-box {
+  background-color: #FBF7F0;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(43, 27, 18, 0.12);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.favorite-box h2,
+.promo-box h2 {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+}
+
+.favorite-box ul {
+  list-style: none;
+}
+
+.favorite-box li {
+  padding: 8px 0;
+  border-bottom: 1px dashed #D8C6AE;
+  font-size: 0.92rem;
+}
+
+.favorite-box li:first-child {
+  padding-top: 0;
+}
+
+.favorite-box li:last-child {
+  border-bottom: none;
+}
+
+#khuyen-mai {
+  border: 12px solid transparent;
+  border-image: repeating-linear-gradient(
+    45deg,
+    #B98543,
+    #B98543 10px,
+    #97682F 10px,
+    #97682F 20px
+  ) 20;
+  background-color: #FBF7F0;
+}
+
+/* ===================== FOOTER ===================== */
+
+.site-footer {
+  background-color: #2B1B12;
+  color: #D8C6AE;
+  padding: 48px 24px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: space-between;
+  background-image:
+    radial-gradient(circle at 90% 20%, rgba(185,133,67,0.18), transparent 40%),
+    linear-gradient(#2B1B12, #2B1B12);
+  background-size: cover, cover;
+}
+
+.footer-col h4 {
+  color: #F3E9DC;
+  font-family: "Fraunces", serif;
+  margin-bottom: 10px;
+}
+
+.footer-col p {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.footer-col a {
+  color: #D8C6AE;
+}
+
+.copyright {
+  width: 100%;
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(216, 198, 174, 0.25);
+  font-size: 0.8rem;
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 760px) {
+  .page-layout {
+    flex-direction: column;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <!-- Đã xóa thẻ img logo ở đây để nó không bị hiện thành 1 cục bé xíu ở giữa nữa -->
+      <div class="brand-text">
+        <h1>TJUN</h1>
+        <p class="slogan">một ly nước ngon cho ngày thêm vui </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav class="main-nav">
+    <ul>
+      <li><a href="#trang-chu">Trang chủ</a></li>
+      <li><a href="#thuc-don">Thực đơn</a></li>
+      <li><a href="#khuyen-mai">Khuyến mãi</a></li>
+      <li><a href="#lien-he">Liên hệ</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-layout">
+    <!-- ===================== MAIN CONTENT ===================== -->
+    <main id="thuc-don">
+      <!-- SECTION: KHAI VỊ / MÓN NHẸ -->
+      <section id="khai-vi" class="menu-section">
+        <h2>Món nhẹ &amp; Bánh ăn kèm</h2>
+        <div class="dish-grid">
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRPXYrnt47Kq8fProP915wOQlMx96yDbgSZjPDsHj_BZDDqP2bZzOo-1AK&s=10" alt="Bánh croissant bơ">
+            <h3>Croissant bơ Pháp</h3>
+            <p>Bánh sừng bò ủ bơ 12 giờ, lớp vỏ giòn tan, ăn kèm mứt dâu nhà làm.</p>
+            <span class="price">32.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb1B165XY9IxPZ8xa4BZ0bkmKnVZGOUk5ZBjHBYZX85g&s=10" alt="Bánh tiramisu">
+            <h3>Tiramisu cacao</h3>
+            <p>Lớp kem mascarpone mềm mịn, rắc cacao nguyên chất, vị đắng nhẹ cân bằng.</p>
+            <span class="price">45.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD6sSWjP1AbV8tAbp7DsPUAIYjvWkiSCg6UHoIlNUX1Q&s=10" alt="Bánh cheesecake chanh dây">
+            <h3>Cheesecake chanh dây</h3>
+            <p>Vị chua thanh của chanh dây hoà cùng phô mai béo ngậy, đế bánh quy giòn.</p>
+            <span class="price">42.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECTION: CÀ PHÊ TRUYỀN THỐNG -->
+      <section id="ca-phe" class="menu-section">
+        <h2>Cà phê truyền thống &amp; Pha máy</h2>
+        <div class="dish-grid">
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu-23BfLjg4qF5t1JDVVt71VIoZEbZkBDNk_BVKVIDyQ&s=10" alt="Cà phê muối">
+            <h3>Cà phê muối</h3>
+            <p>Cà phê phin đậm đà kết hợp lớp kem muối béo nhẹ, đặc trưng của quán.</p>
+            <span class="price">39.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQlEm0DZMfWFdVkhYvZjzgOi0c_2B4pS8ejChsrPWZDA&s=10" alt="Bạc xỉu">
+            <h3>Bạc xỉu</h3>
+            <p>Nhiều sữa, ít cà phê, vị ngọt béo dịu nhẹ, phù hợp buổi sáng.</p>
+            <span class="price">35.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_gCjRBvHUPpyuKa6Bsj9v6cm4Yt2CCNUg_S05btFMYg&s=10" alt="Latte hạt dẻ">
+            <h3>Cà phê sữa tươi</h3>
+            <p>Sự kết hợp ngọt ngào của sữa tươi DaLat milk và sự nồng nàn của cà phê đà lạt giúp cho món cà phê sữa tươi thêm phần bùng nổ</p>
+            <span class="price">25.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+        </div>
+      </section>
+
+<!-- SECTION: Trà sữa -->
+      <section id="tra sua" class="menu-section">
+        <h2>Trà Sữa Mẹ Nấu- Ba Khen</h2>
+        <div class="dish-grid">
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTNGBTY1fT-aayly4Sici9v6DP2vkf8y1k_Bx6vU2FfQ&s=10" alt="Cà phê muối">
+            <h3>Trà Sữa Uyên Uơng</h3>
+            <p>Sự hào huyện của trà sữa uyên ương giúp người uống có thể cảm nhận được sự thanh mát và ngọt dịu từ ngụm đầu tiên.</p>
+            <span class="price">20.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTM_rM5iBs6ayLqG4VtNhtJ6AWKhaw7zvgudCWnn6yv2Q&s=10" alt="Bạc xỉu">
+            <h3>trà sữa bạc hà</h3>
+            <p>trà sữa bạc hà thanh mát có vị the nhẹ của bạc hà giúp món trà sữa thêm phần ngon ngon.</p>
+            <span class="price">25.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCN-yO_U5vhd4CxyOCypYRfFiVbo_cmjvPMJ6lAmhThg&s=10" alt="Latte hạt dẻ">
+            <h3>trà sữa mẹ nấu(best seller)</h3>
+            <p>Trà sữa mẹ nấu ba phải khen ngon phải thử mới biết được.</p>
+            <span class="price">15.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+        </div>
+      </section>
+<!-- SECTION: Trà trái cây -->
+      <section id="tra trai cay" class="menu-section">
+        <h2>Trà Trái Cây</h2>
+        <div class="dish-grid">
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaKheQH4t06W-M8ym0qVuhyEX1ibiAmYkQ9K91pedCuA&s=10" alt="Cà phê muối">
+            <h3>Trà ổi hồng</h3>
+            <p>trà ổi hồng bùng nổ mùa hè </p>
+            <span class="price">20.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5xJibT84FrSbMANr2o-UeIFWDd2x9guJXZfuBbPlxhA&s=10" alt="Bạc xỉu">
+            <h3>trà chanh dả tay</h3>
+            <p>trà sữa bạc hà thanh mát có vị the nhẹ của bạc hà giúp món trà sữa thêm phần ngon ngon.</p>
+            <span class="price">25.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmRQdRlBja1sfl2-824bRWbs-2EOKuE-uS5ZXUSEQrbw&s=10" alt="Latte hạt dẻ">
+            <h3>Trà đào </h3>
+            <p>Trà sữa mẹ nấu ba phải khen ngon phải thử mới biết được.</p>
+            <span class="price">15.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECTION: THỨC UỐNG KHÁC -->
+      <section id="thuc-uong" class="menu-section">
+        <h2>Trà trái cây &amp; Thức uống mát</h2>
+        <div class="dish-grid">
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7IWTLoUgA5RZqq988EEHUuW5Mv4ffuLDRWmEwa2atvw&s=10" alt="Trà ô long đào tiên">
+            <h3>Trà ô long đào tiên</h3>
+            <p>Trà ô long thanh mát kết hợp đào ngâm chua ngọt, thạch dừa giòn sần sật.</p>
+            <span class="price">42.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+          <article class="dish-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxlF-fxrRYDz2u-OUxw7Ivg4yrZeuazDwEMpBhrAav_A&s=10" alt="Trà sen macchiato">
+            <h3>Trà sen macchiato</h3>
+            <p>Trà sen thơm dịu, phủ lớp macchiato béo nhẹ trên cùng.</p>
+            <span class="price">45.000đ</span>
+            <a href="#" class="btn-order">Đặt món</a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== ASIDE ===================== -->
+    <aside class="sidebar">
+      <div class="favorite-box">
+        <h2>Món yêu thích trong tuần</h2>
+        <ul>
+          <li>Cà phê muối - 39.000đ</li>
+          <li>Tiramisu cacao - 45.000đ</li>
+          <li>Trà sen macchiato - 45.000đ</li>
+        </ul>
+      </div>
+
+      <div id="khuyen-mai" class="promo-box">
+        <h2>Ưu đãi hôm nay</h2>
+        <p>Giảm 10% cho hoá đơn từ 100.000đ khung giờ 14h - 17h mỗi ngày.</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer id="lien-he" class="site-footer">
+    <div class="footer-col">
+      <h4>Giờ mở cửa</h4>
+      <p>Thứ 2 - Thứ 6: 07:00 - 22:00</p>
+      <p>Thứ 7 - Chủ nhật: 07:00 - 23:00</p>
+    </div>
+    <div class="footer-col">
+      <h4>Thông tin liên hệ</h4>
+      <p>117/131 Nguyễn Hữu Cảnh, Phường Thạnh Mỹ Tây, TPHCM</p>
+      <p>Hotline: 0326924660</p>
+    </div>
+    <div class="footer-col">
+      <h4>Kết nối với chúng tôi</h4>
+      <p><a href="#">Facebook</a> &middot; <a href="#">Instagram</a> &middot; <a href="#">Zalo</a></p>
+    </div>
+    <p class="copyright">&copy; 2026 TJUN. Đã đăng ký bản quyền.</p>
+  </footer>
+
+</body>
+</html>	

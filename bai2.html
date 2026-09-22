@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trang cá nhân giới thiệu bản thân, kỹ năng, dự án và hành trình học tập.">
+  <title>Bùi | Portfolio cá nhân</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+/* ============================================================
+   BLOG CÁ NHÂN - style.css
+   Bảng màu: nền #F7F7F5, chữ #1B1F23, khối tối #14181D,
+             điểm nhấn xanh ngọc #2A9D8F
+   Nhóm kiến thức CSS3 vận dụng (ghi chú ngay tại vị trí áp dụng):
+   1. Selector | 2. Border & Background | 3. Text Effects
+   4. 2D/3D Transform | 5. Transitions & Animations
+   6. Multiple Columns | 7. User Interface
+   ============================================================ */
+
+/* --- Selector: universal --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* --- Selector: tag --- */
+body {
+  font-family: "Inter", Arial, sans-serif;
+  background-color: #F7F7F5;
+  color: #1B1F23;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: "Space Grotesk", sans-serif;
+  color: #14181D;
+}
+
+a {
+  color: #2A9D8F;
+  text-decoration: none;
+}
+
+/* ===================== HEADER (sticky) ===================== */
+
+/* --- Selector: id không dùng ở đây, class .site-header --- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background-color: rgba(247, 247, 245, 0.9);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid #E4E2DC;
+}
+
+.brand {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+/* --- Selector: descendant (.site-header nav ul) --- */
+.site-header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+}
+
+.site-header nav a {
+  color: #1B1F23;
+  font-weight: 500;
+  position: relative;
+}
+
+/* --- Selector: pseudo-element ::after + Transition: gạch chân xuất hiện khi hover --- */
+.site-header nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background-color: #2A9D8F;
+  transition: width 0.25s ease;
+}
+
+.site-header nav a:hover::after {
+  width: 100%;
+}
+
+/* ===================== HERO SECTION ===================== */
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  min-height: 82vh;
+  padding: 40px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 560px;
+}
+
+.eyebrow-greeting {
+  font-size: 1rem;
+  color: #2A9D8F;
+  margin-bottom: 8px;
+  height: 1.4em;
+  overflow: hidden;
+}
+
+/* --- Text Effects + Animation: chữ chào đổi qua nhiều ngôn ngữ --- */
+.lang-swap {
+  display: inline-block;
+  animation: swapLang 8s steps(1) infinite;
+}
+
+@keyframes swapLang {
+  0%   { content: ""; }
+  0%, 24%   { transform: translateY(0); }
+  25%, 49%  { transform: translateY(-1.4em); }
+  50%, 74%  { transform: translateY(-2.8em); }
+  75%, 100% { transform: translateY(0); }
+}
+
+.hero-text h1 {
+  font-size: 3.2rem;
+  line-height: 1.1;
+  margin-bottom: 18px;
+}
+
+.hero-desc {
+  color: #4A4F55;
+  margin-bottom: 28px;
+}
+
+.cta-group {
+  display: flex;
+  gap: 16px;
+}
+
+/* --- User Interface: kiểu nút bấm dùng chung --- */
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #14181D;
+  color: #F7F7F5;
+}
+
+.btn-outline {
+  border: 1.5px solid #14181D;
+  color: #14181D;
+}
+
+/* --- 2D Transform + Transition: nút nhấc lên khi hover --- */
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(20, 24, 29, 0.18);
+}
+
+.hero-avatar {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid #FFFFFF;
+  box-shadow: 0 16px 30px rgba(20, 24, 29, 0.15);
+}
+
+/* ===================== GIỚI THIỆU ===================== */
+
+.about {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  max-width: 1180px;
+  margin: 60px auto;
+  padding: 0 40px;
+}
+
+.about-img {
+  width: 320px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.about-text h2 {
+  margin-bottom: 16px;
+}
+
+.highlight {
+  background-color: rgba(42, 157, 143, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ===================== KỸ NĂNG ===================== */
+
+.skills {
+  max-width: 1180px;
+  margin: 60px auto;
+  padding: 0 40px;
+}
+
+.skills h2 {
+  margin-bottom: 24px;
+}
+
+.tag-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* --- User Interface + 2D Transform: thẻ kỹ năng dạng pill --- */
+.tag {
+  background-color: #14181D;
+  color: #F7F7F5;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.tag:hover {
+  transform: scale(1.08);
+  background-color: #2A9D8F;
+}
+
+/* ===================== DỰ ÁN ===================== */
+
+.projects {
+  max-width: 1180px;
+  margin: 60px auto;
+  padding: 0 40px;
+}
+
+.projects h2 {
+  margin-bottom: 24px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+.project-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(20, 24, 29, 0.08);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* --- 2D Transform + Transition: card nổi lên khi hover --- */
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 30px rgba(20, 24, 29, 0.14);
+}
+
+.project-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+.project-card h3,
+.project-card p,
+.project-card a {
+  margin: 12px 18px;
+}
+
+.project-card p {
+  color: #4A4F55;
+  font-size: 0.92rem;
+}
+
+.project-link {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+/* ===================== HÀNH TRÌNH / TIMELINE ===================== */
+
+.journey {
+  max-width: 1180px;
+  margin: 60px auto;
+  padding: 0 40px;
+}
+
+.journey h2 {
+  margin-bottom: 24px;
+}
+
+.timeline {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+.timeline li {
+  flex: 0 0 200px;
+  border-top: 3px solid #2A9D8F;
+  padding-top: 16px;
+}
+
+.timeline .year {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #2A9D8F;
+}
+
+/* ===================== BÀI VIẾT + ASIDE ===================== */
+
+.content-with-aside {
+  display: flex;
+  gap: 40px;
+  max-width: 1180px;
+  margin: 60px auto;
+  padding: 0 40px;
+}
+
+.posts {
+  flex: 3;
+  /* Multiple Columns: hiển thị các bài viết theo dạng nhiều cột */
+  column-count: 2;
+  column-gap: 28px;
+}
+
+.posts h2 {
+  column-span: all;
+  margin-bottom: 20px;
+}
+
+.post-preview {
+  break-inside: avoid;
+  background-color: #FFFFFF;
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 16px rgba(20, 24, 29, 0.06);
+}
+
+.post-preview h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+.post-preview p {
+  font-size: 0.9rem;
+  color: #4A4F55;
+}
+
+.side-links {
+  flex: 1;
+  min-width: 200px;
+}
+
+.side-links h2 {
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+}
+
+.side-links ul {
+  list-style: none;
+}
+
+.side-links li {
+  margin-bottom: 10px;
+}
+
+/* ===================== FOOTER ===================== */
+
+.site-footer {
+  background-color: #14181D;
+  color: #C9CDD3;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.footer-links a {
+  color: #C9CDD3;
+  margin: 0 6px;
+}
+
+.copyright {
+  margin: 14px 0;
+  font-size: 0.85rem;
+}
+
+/* --- User Interface + Transition: nút về đầu trang --- */
+.back-to-top {
+  display: inline-block;
+  border: 1px solid #C9CDD3;
+  border-radius: 999px;
+  padding: 8px 18px;
+  color: #F7F7F5;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.back-to-top:hover {
+  background-color: #2A9D8F;
+  border-color: #2A9D8F;
+  color: #14181D;
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 820px) {
+  .hero,
+  .about,
+  .content-with-aside {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-img {
+    width: 240px;
+  }
+
+  .posts {
+    column-count: 1;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HEADER (sticky) ===================== -->
+  <header class="site-header">
+    <div class="brand">Chào mừng bạn đến với không gian cá nhân của mình!</div>
+    <nav>
+      <ul>
+        <li><a href="#trang-chu">Trang chủ</a></li>
+        <li><a href="#gioi-thieu">Giới thiệu</a></li>
+        <li><a href="#du-an">Dự án</a></li>
+        <li><a href="#bai-viet">Bài viết</a></li>
+        <li><a href="#lien-he">Liên hệ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===================== HERO SECTION ===================== -->
+  <section id="trang-chu" class="hero">
+    <div class="hero-text">
+      <p class="eyebrow-greeting">
+        <span class="lang-swap">Xin chào</span>
+      </p>
+      <h1>Mình là Bùi Quốc Thái</h1>
+      <p class="hero-desc">
+        Sinh viên ngành Công nghệ thông tin, Trường Đại Học Giao Thông Vận Tải Phân Hiệu Thành Phố Hồ Chí Minh, với niềm đam mê với công nghệ em tham gia học ngành công nghệ thông tin để tìm hiểu sâu hơn về đam mê của mình, mong rằng đam mê của em có thể giúp em phát triển hơn trong tương lai em không ngừng cố găng trao dồi kiến thức để giúp em có thể tiếp cận được thị trường hiện tại một cách tốt hơn.
+      </p>
+      <div class="cta-group">
+        <a href="#du-an" class="btn btn-primary">Xem hồ sơ</a>
+        <a href="#lien-he" class="btn btn-outline">Liên hệ tôi</a>
+      </div>
+    </div>
+    <img src="C:\Users\Thai\OneDrive\Pictures\nhóm heo\tôi.jpg"" alt="Ảnh chân dung của Bùi" class="hero-avatar">
+  </section>
+
+  <!-- ===================== GIỚI THIỆU BẢN THÂN ===================== -->
+  <section id="gioi-thieu" class="about">
+    <img src="images/about-photo.jpg" alt="Ảnh sinh hoạt của Bùi" class="about-img">
+    <div class="about-text">
+      <h2>Đôi chút về Bùi Quốc Thái</h2>
+      <p>
+        Mình đang học tại <strong>Trường Đại học GTVT phân hiệu TP.HCM</strong>,
+        chuyên ngành <strong>Công nghệ thông tin</strong>. mình sinh ra và lớn lên tại Bình Thuận, gia đình cho truyền thống nghề biển, ưu điểm của mình có thể bơi xải nhưng không thể bơi ếch dù học 3 năm cấp 3, 
+        <a href="#du-an">các dự án cá nhân của mình </a> và học thêm về
+        <span class="highlight">trải nghiệm người dùng (UX)</span>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== KỸ NĂNG / CÔNG CỤ ===================== -->
+  <section id="ky-nang" class="skills">
+    <h2>Kỹ năng &amp; công cụ</h2>
+    <div class="tag-grid">
+      <span class="tag">HTML5</span>
+      <span class="tag">CSS3</span>
+      <span class="tag">Python</span>
+      <span class="tag">Figma</span>
+      <span class="tag">Git</span>
+      <span class="tag">Photoshop</span>
+      <span class="tag">Responsive Design</span>
+      <span class="tag">UI/UX cơ bản</span>
+	  <span class="tag">Content Creator</span>
+    </div>
+  </section>
+
+  <!-- ===================== DỰ ÁN NỔI BẬT ===================== -->
+  <section id="du-an" class="projects">
+    <h2>Dự án nổi bật</h2>
+    <div class="project-grid">
+
+      <article class="project-card">
+        <img src="C:\Users\Thai\OneDrive\Pictures\Screenshots\Ảnh chụp màn hình 2026-09-22 160918.png" alt="Website thực đơn quán cà phê">
+        <h3>Website thực đơn quán nước Tjun</h3>
+        <p>Xây dựng giao diện menu tĩnh bằng HTML5 &amp; CSS3, tập trung vào bố cục card và hiệu ứng đổ bóng.</p>
+        <a href="file:///C:/hoc%20tap/hoc%20lap%20trinh%20c/thiet%20ke%20web/ngay3/bai1.html" class="project-link">Xem chi tiết</a>
+      </article>
+
+      <article class="project-card">
+        <img src="C:\Users\Thai\OneDrive\Pictures\Screenshots\Ảnh chụp màn hình 2026-09-22 161350.png" alt="Blog cá nhân">
+        <h3>Trang Youtube cá nhân đạt nữa cái nút bạc.</h3>
+        <p>Kênh youtube đầu tiên đạt hơn 50000 người đăng ký theo dõi.</p>
+        <a href="https://www.youtube.com/@TKanime0806" class="project-link" target="_blank">
+    Xem chi tiết
+</a>
+      </article>
+
+      <article class="project-card">
+        <img src="images/project-app.jpg" alt="Ứng dụng quản lý công việc">
+        <h3>Ứng dụng quản lý công việc</h3>
+        <p>Bài tập nhóm xây dựng giao diện quản lý task đơn giản bằng HTML, CSS và JavaScript cơ bản.</p>
+        <a href="#" class="project-link">Xem chi tiết</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===================== HÀNH TRÌNH / DÒNG THỜI GIAN ===================== -->
+  <section id="hanh-trinh" class="journey">
+    <h2>Hành trình</h2>
+    <ul class="timeline">
+      <li>
+        <span class="year">2022</span>
+        <p>Bắt đầu học ngành Công nghệ thông tin.</p>
+      </li>
+      <li>
+        <span class="year">2023</span>
+        <p>Làm quen với HTML, CSS, tự thiết kế trang cá nhân đầu tiên.</p>
+      </li>
+      <li>
+        <span class="year">2024</span>
+        <p>Bắt đầu tìm hiểu C++.</p>
+      </li>
+      <li>
+        <span class="year">2026</span>
+        <p>tiếp tục học tập và làm việc tại Đại Học GTVT phân hiệu TPHCM</p>
+      </li>
+    </ul>
+  </section>
+
+  <div class="content-with-aside">
+    <!-- ===================== BÀI VIẾT / CHIA SẺ ===================== -->
+    <section id="bai-viet" class="posts">
+      <h2>Bài viết gần đây</h2>
+      <article class="post-preview">
+        <h3>Những điều mình học được khi làm dự án đầu tiên</h3>
+        <p>Một vài ghi chú về cách tổ chức thư mục và quy trình làm việc với CSS3...</p>
+      </article>
+      <article class="post-preview">
+        <h3>Vì sao mình chọn học thiết kế giao diện</h3>
+        <p>Chia sẻ về lý do bắt đầu với front-end và những khó khăn ban đầu...</p>
+      </article>
+    </section>
+
+    <!-- ===================== ASIDE ===================== -->
+    <aside class="side-links">
+      <h2>Kết nối</h2>
+      <ul>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer id="lien-he" class="site-footer">
+    <p class="footer-links">
+      <a href="#">Facebook</a> &middot; <a href="#">GitHub</a> &middot; <a href="#">LinkedIn</a>
+    </p>
+    <p class="copyright">&copy; 2026 Bùi. Đã đăng ký bản quyền.</p>
+    <a href="#trang-chu" class="back-to-top">Về đầu trang</a>
+  </footer>
+
+</body>
+</html>
